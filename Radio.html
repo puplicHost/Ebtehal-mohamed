@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falco</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+      :root {
+            --primary-color: #f3a0c9;
+            --secondary-color: #f3a0c9;
+            --accent-color: #f3a0c9;
+            --dark-color: #f3a0c9;
+            --light-color: #f3a0c9;
+            --text-color:#fff;
+            --card-bg: #000000;
+            --nav-bg: #000000;  
+            --border-color: #000000;
+        }
+
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--dark-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--nav-bg);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .back-btn {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            color: var(--accent-color);
+        }
+
+        /* Header */
+        .project-header {
+            background: var(--nav-bg);
+            color: white;
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+
+        .project-header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .project-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Content */
+        .project-content {
+            padding: 80px 0;
+        }
+
+        .project-section {
+            margin-bottom: 60px;
+        }
+
+        .project-section h2 {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .project-description {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-description p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .post-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .post-content {
+            padding: 20px;
+        }
+
+        .post-content h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .post-content p {
+            color: var(--text-color);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            background-color: var(--light-color);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .contact-info p {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .contact-info strong {
+            color: var(--accent-color);
+        }
+
+        .project-links {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 12px 30px;
+            border: 2px solid var(--text-color);
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+
+        .project-link:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-2px);
+        }
+.post-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-right: 10px;
+
+}
+
+.post-button:hover {
+    background-color: var(--nav-bg);
+    transform: scale(1.05);
+        border: #f3a0c9;
+}
+     footer {
+            background-color: var(--light-color);
+            color: white;
+            padding: 50px 0 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Videos Section */
+        .videos-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .video-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+
+
+
+
+
+        .video-info strong {
+            color: var(--accent-color);
+        }
+        .script-item {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+        .script-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .script-info {
+            padding: 20px;
+        }
+        .script-info h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .script-info p {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .script-files {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .script-files h3 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        .script-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .script-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 12px 20px;
+            background-color: var(--light-color);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .script-link:hover {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            transform: translateX(5px);
+        }
+
+        .script-link i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-header h1 {
+                font-size: 2rem;
+            }
+            
+            .posts-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .post-content {
+                padding: 15px;
+            }
+
+            .post-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .post-content p {
+                font-size: 0.95rem;
+            }
+
+            .contact-info {
+                padding: 12px;
+            }
+
+            .videos-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .project-video {
+                height: 250px;
+            }
+
+            .video-content {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .project-header p {
+                font-size: 1rem;
+            }
+
+            .post-content h3 {
+                font-size: 1rem;
+            }
+
+            .post-content p {
+                font-size: 0.9rem;
+            }
+
+            .project-video {
+                height: 200px;
+            }
+
+            .video-content {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="logo"> EM</a>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Portfolio
+            </a>
+        </div>
+    </nav>
+
+    <header class="project-header">
+        <div class="container">
+            <h1>Radio Lab </h1>
+        </div>
+    </header>
+
+    <section class="project-content">
+  <div class="container">
+    <div class="project-section">
+
+      <div class="posts-grid">
+
+        <!-- بوست 1 -->
+        <div class="post-card" dir="rtl">
+          <img src="projects/Radio/1.jpg" alt="Post 1" class="post-image">
+          <div class="post-content">
+            <p>
+              ⚠️ <strong>5 أعراض خطيرة بتدل على مشاكل في الكلى</strong> مينفعش تتجاهلها! <br><br>
+              الكلى من أهم أعضاء جسمك، ودورها الأساسي تنقية الدم من السموم، لكن أحيانًا بتظهر مشاكل بتخليها مش قادرة تقوم بدورها صح.  
+              <br><br>
+              🔹 أهم الأعراض:<br>
+              1️⃣ ألم في أسفل الظهر أو الجنب.<br>
+              2️⃣ تورم القدمين والساقين (بسبب احتباس السوائل).<br>
+              3️⃣ تعب مستمر وهمدان في الجسم.<br>
+              4️⃣ تغييرات في شكل أو لون البول.<br>
+              5️⃣ ارتفاع ضغط الدم.<br><br>
+              لو لاحظت الأعراض دي، متتأخرش وتطمن على نفسك مع<br>
+              <strong>د. محمد صبري الراوي</strong> — استشاري أمراض الباطنة والكلى.  
+              <br><br>
+              🗓 <strong>المواعيد:</strong><br>
+              🔹 السبت والاثنين والأربعاء — فرع دراو<br>
+              📍 دراو، شارع المستشفى بجوار مستشفى دراو المركزي<br>
+              📞 01101004929<br><br>
+              🔹 الأحد — فرع نصر النوبة<br>
+              📍 نصر النوبة، مبنى نقابة المعلمين الجديد<br>
+              📞 01094949617<br><br>
+              🔹 الأحد والثلاثاء والخميس — فرع أسوان<br>
+              📍 أسوان، ميدان الطابية، بجوار مستشفى الهلال الأحمر<br>
+              📞 01111908055
+            </p>
+          </div>
+          <a href="https://www.facebook.com/share/p/1BBj2kf76G/" class="post-button">مشاهدة البوست</a>
+        </div>
+
+        <!-- بوست 2 -->
+        <div class="post-card" dir="rtl">
+          <img src="projects/Radio/2.jpg" alt="Post 2" class="post-image">
+          <div class="post-content">
+            <p>
+              بتعاني من مشاكل في الهضم أو ألم مستمر في البطن؟ 🤔  
+              ممكن تكون أعراض لمشكلة في الجهاز الهضمي أو الكبد.  
+              <br><br>
+              🔸 الأعراض المحتملة:<br>
+              - حرقة أو حموضة مستمرة<br>
+              - انتفاخ بعد الأكل<br>
+              - ألم في الجزء العلوي من البطن<br>
+              - غثيان أو قيء متكرر<br>
+              - اصفرار في الجلد أو العينين<br><br>
+              🔸 الأسباب الممكنة:<br>
+              - التهابات المعدة أو القولون<br>
+              - تليف أو التهاب الكبد<br>
+              - مشاكل في المرارة أو القنوات الصفراوية<br><br>
+              💡 تطمن مع <strong>د. يسرا يسري</strong> — أخصائي الجهاز الهضمي والكبد.  
+              <br><br>
+              🗓 السبت والأربعاء — أسوان (ميدان الطابية – بجوار مستشفى الهلال الأحمر)<br>
+              📞 01111908055<br><br>
+              🗓 الأحد — دراو (شارع المستشفى – بجوار مستشفى دراو المركزي)<br>
+              📞 01101004929
+            </p>
+          </div>
+          <a href="https://www.facebook.com/share/p/1BM7pc6FWR/" class="post-button">مشاهدة البوست</a>
+        </div>
+
+        <!-- بوست 3 -->
+        <div class="post-card" dir="rtl">
+          <img src="projects/Radio/3.jpg" alt="Post 3" class="post-image">
+          <div class="post-content">
+            <p>
+              بتعاني من <strong>حكة وجفاف شديد في الجلد؟</strong> 😣  
+              ممكن تكون مصاب بـ <strong>الإكزيما</strong>!  
+              <br><br>
+              🔸 الأعراض:<br>
+              1️⃣ جفاف وحساسية في الجلد.<br>
+              2️⃣ طفح جلدي واحمرار.<br>
+              3️⃣ خشونة وتقشر.<br>
+              4️⃣ اسوداد وانتفاخ بمناطق معينة.<br>
+              5️⃣ بقع قشرية من سائل أصفر جاف.<br><br>
+              🔸 الأسباب:<br>
+              - عوامل وراثية.<br>
+              - ضعف الجهاز المناعي.<br>
+              - مثيرات الحساسية (غبار، أطعمة، إلخ).<br><br>
+              عشان كده لازم فحص عند دكتور جلدية مختص.  
+              احجز مع <strong>د. إيمان حسين طه</strong> — أخصائي الجلدية والتناسلية والتجميل (ماجستير جامعة أسوان).  
+              <br><br>
+              📍 أسوان – ميدان الطابية – بجوار مستشفى الهلال الأحمر<br>
+              📞 01111908055
+            </p>
+          </div>
+          <a href="https://www.facebook.com/share/p/17hxC4PDxf/" class="post-button">مشاهدة البوست</a>
+        </div>
+
+        <!-- بوست 4 -->
+        <div class="post-card" dir="rtl">
+          <img src="projects/Radio/4.jpg" alt="Post 4" class="post-image">
+          <div class="post-content">
+            <p>
+              <strong>أشعة الإيكو 🩺</strong> الخطوة الأهم علشان تطمن على قلبك 🤍<br><br>
+              بتستخدم لتصوير القلب وتقييم وظيفته، وبتكشف المشاكل مبكرًا.  
+              <br><br>
+              🔸 مين محتاج يعملها؟<br>
+              - مريض القلب أو مريض السكر والضغط.<br>
+              - قبل أي عملية جراحية.<br><br>
+              🔸 الأعراض اللي تستدعي الفحص:<br>
+              - نبضات غير منتظمة.<br>
+              - ألم بالصدر أو ضيق التنفس.<br>
+              - تعب مستمر حتى مع مجهود بسيط.<br>
+              - تورم في الساقين أو البطن.<br><br>
+              💡 متوفر حاليًا في <strong>راديو لاب – فرع أسوان</strong><br>
+              🗓 السبت – الاثنين – الأربعاء<br>
+              📍 ميدان الطابية، بجوار مستشفى الهلال الأحمر<br>
+              📞 01111908055
+            </p>
+          </div>
+          <a href="https://www.facebook.com/share/p/17KoHog3ba/" class="post-button">مشاهدة البوست</a>
+        </div>
+
+      </div>
+
+      <div class="project-links">
+        <a href="https://www.facebook.com/Radiolab.center" class="project-link" target="_blank">
+          <i class="fab fa-facebook"></i>
+          Visit Facebook Page
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+   
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+
+            <div class="footer-section">
+                <h3> ‫ابتهال محمد‬</h3>
+                <p>Team Leader | Digital Marketer & Copywriter   </p>
+            </div>
+
+       
+<div class="footer-section">
+    <h3>تواصل معي</h3>
+    <div class="social-links">
+        <a href="mailto:ebtehalm094@gmail.com" class="social-link" title="أرسل لي بريدًا إلكترونيًا">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://wa.me/201155350664" class="social-link" target="_blank" title="تواصل عبر واتساب">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.google.com/maps/search/Aswan,+Elsadat+Road" class="social-link" target="_blank" title="الموقع: أسوان - طريق السادات">
+            <i class="fas fa-map-marker-alt"></i>
+        </a>
+    </div>
+</div>
+
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 ‫ابتهال محمد‬. جميع الحقوق محفوظة.</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
